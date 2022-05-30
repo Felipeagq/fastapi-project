@@ -5,3 +5,9 @@ class UserRequestSchema(BaseModel):
     email: str
     password: str
     role: str
+
+
+class UserResponseSchema(BaseModel):
+    username: str
+    email: str
+    role: str

@@ -40,7 +40,7 @@ class Settings(BaseSettings):
     # SECURITY UTILS
     SECRET_KEY: str = "5126402477d3baacae24c2be"
     # SECRET_KEY: str = os.getenv("SECRET_KEY") or os.urandom(12).hex()
-    TOKEN_EXPIRE_MINUTES: int = os.getenv("TOKEN_EXPIRE_MINUTES") or 60
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = os.getenv("TOKEN_EXPIRE_MINUTES") or 60
     ALGORITHM: str = "HS256"
     
     # POSTGRES GENERAL CREDENTIALS
