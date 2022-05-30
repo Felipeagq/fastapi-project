@@ -23,5 +23,24 @@ services:
 ```
 - docker-compose -f docker-compose-postgres.yml up -d
 
-## pendiente
-- Autenticación.
+## repeat_every
+- https://fastapi-utils.davidmontague.xyz/user-guide/repeated-tasks/
+- https://apscheduler.readthedocs.io/en/3.x/userguide.html#adding-jobs
+```python
+from fastapi_utils.tasks import repeat_every
+
+@router.on_event("startup")
+@repeat_every(seconds=60)
+def repeated_task() -> str:
+    """
+    Internal Task that start on the startup event.
+    Must dont have arguments.
+    Repeat every "n" seconds
+    """
+    ...
+
+@router.get("start1")
+@repeat_every(seconds=2)
+def repeated_task_two() -> str:
+    print("Imprimiendo 2")
+```
