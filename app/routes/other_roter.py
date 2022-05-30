@@ -26,7 +26,7 @@ def repeated_task() -> str:
     Must dont have arguments.
     Repeat every "n" seconds
     """
-    print("imprimiendo")
+    print("imprimiendo") # función que esta en services
 
 
 @router.get("/start1",)
@@ -35,7 +35,7 @@ def repeated_task() -> str:
     max_repetitions=15
 )
 def repeated_task_two() -> str:
-    print("Imprimiendo 2")
+    print("Imprimiendo 2") # función que esta en services
 
 
 @router.get("/start2")
@@ -48,5 +48,5 @@ async def other_repeater_task():
         "interval", 
         seconds=3 # minutes, hours
         )  # runs every night at midnight
-def some_task():
+def some_task(): # función que esta en services
     print("impresion3")
