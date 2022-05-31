@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.routes.user_route import router as user_router
 from app.routes.other_roter import router as other_router
 from app.routes.files_router import router as file_rouer
+from app.routes.streaming_file import router as stream_route
 
 from app.utils.settings import settings
 from starlette.middleware.cors import CORSMiddleware
@@ -26,6 +27,13 @@ app.include_router(
     prefix="/file",
     tags=["file Management"]
 )
+
+app.include_router(
+    stream_route,
+    prefix="/video",
+    tags=["stream Management"]
+)
+
 
 
 

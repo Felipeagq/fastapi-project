@@ -36,7 +36,13 @@ async def upload_file(files:List[UploadFile] = File(...)):
                 myfile.close()
     except Exception as e:
         print(e)
-        return str(e)
+        return JSONResponse(
+            content={
+                "created":False,
+                "status_code": status.HTTP_404_NOT_FOUND,
+                "msg":str(e)
+            }
+        )
     return JSONResponse(
     content={
         "uploaded":True,
