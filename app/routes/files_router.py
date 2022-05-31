@@ -3,6 +3,7 @@ from fastapi import APIRouter,UploadFile,File, status, Form
 from fastapi.responses import FileResponse, JSONResponse
 from app.utils.settings import settings
 import os 
+from typing import List
 from shutil import rmtree
 
 router = APIRouter()
@@ -14,8 +15,36 @@ async def upload_file(file:UploadFile = File(...)):
         content = await file.read()
         myfile.write(content)
         myfile.close()
-        
-    return "ok"
+    return JSONResponse(
+    content={
+        "created":True,
+        "status_code": status.HTTP_200_OK,
+        "msg":f"{file.filename} created"
+    }
+)
+
+
+@router.post("/multiple")
+async def upload_file(files:List[UploadFile] = File(...)):
+    try:
+        for file in files:
+            print(file.filename)
+            file_path = os.path.join(settings.STORAGE_PATH,file.filename)
+            with open(file_path,"wb") as myfile:
+                content = await file.read()
+                myfile.write(content)
+                myfile.close()
+    except Exception as e:
+        print(e)
+        return str(e)
+    return JSONResponse(
+    content={
+        "uploaded":True,
+        "status_code": status.HTTP_200_OK,
+        "msg":f"{file.filename} uploaded"
+    }
+)
+
 
 
 @router.get("/{name_file}")
