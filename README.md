@@ -1,6 +1,16 @@
 # FastAPI Blog
 API de un CRUD de blogs y migraciones a base de datos
 
+- Create user request
+```json
+{
+  "username": "string",
+  "email": "string",
+  "password": "string",
+  "role": "string"
+}
+```
+
 ## Comandos para migración
 - alembic current
 - alembic revision --autogenerate -m "first m"
