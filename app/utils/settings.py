@@ -1,4 +1,5 @@
-import os 
+import os
+from re import S 
 from dotenv import load_dotenv
 from typing import Any, List,Optional, Union
 from pydantic import BaseSettings,AnyHttpUrl
@@ -55,6 +56,9 @@ class Settings(BaseSettings):
     
     # CORS
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = []
+    
+    # STORAGE
+    STORAGE_PATH = os.path.join(os.getcwd(),"app","storage")
 
 
 settings = Settings()

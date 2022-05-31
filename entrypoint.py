@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.routes.user_route import router as user_router
 from app.routes.other_roter import router as other_router
+from app.routes.files_router import router as file_rouer
 
 from app.utils.settings import settings
 from starlette.middleware.cors import CORSMiddleware
@@ -17,7 +18,13 @@ app.include_router(
 app.include_router(
     other_router,
     prefix="/other",
-    tags=["other Management"]
+    tags=["task Management"]
+)
+
+app.include_router(
+    file_rouer,
+    prefix="/file",
+    tags=["file Management"]
 )
 
 
