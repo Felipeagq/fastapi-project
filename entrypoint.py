@@ -3,11 +3,15 @@ from app.routes.user_route import router as user_router
 from app.routes.other_roter import router as other_router
 from app.routes.files_router import router as file_rouer
 from app.routes.streaming_file import router as stream_route
+import uvicorn
 
 from app.utils.settings import settings
 from starlette.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI(
+    title="Demostración",
+    version="v1.0.1"
+)
 
 app.include_router(
     user_router,
@@ -44,4 +48,17 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_origins=["*"],
         allow_methods=["*"],
         allow_headers=["*"]
+    )
+
+
+if __name__ == "__main__":
+    uvicorn.run(
+        "entrypoint:app",
+        host="0.0.0.0",
+        port=5000,
+        workers=1,
+        reload=True,
+        # log_level= "debug",
+        access_log=False,
+        use_colors=True
     )

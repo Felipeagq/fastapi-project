@@ -54,3 +54,6 @@ def repeated_task() -> str:
 def repeated_task_two() -> str:
     print("Imprimiendo 2")
 ```
+
+## Buildear una imagen
+````docker build . -t testing:v1.0.0````
