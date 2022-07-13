@@ -56,4 +56,5 @@ def repeated_task_two() -> str:
 ```
 
 ## Buildear una imagen
+Commando para construir la imagen de docker
 ````docker build . -t testing:v1.0.0````
